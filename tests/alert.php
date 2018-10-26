@@ -1,0 +1,1 @@
+<script>alert('Il y a une faille XSS!  Je vous prie de ne saisir que des caractères Alphabétique')</script>
