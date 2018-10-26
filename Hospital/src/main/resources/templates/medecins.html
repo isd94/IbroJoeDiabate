@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Liste des Médécins</title>
+<link rel="stylesheet" href="/css/bootstrap.min.css"></link>
+<link rel="stylesheet" href="/css/bootstrap.css"></link>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<!-- <link rel="stylesheet" href="/datatables/css/jquery.dataTables.min.css"></link>  -->
+<link rel="stylesheet" href="/datatables/css/dataTables.bootstrap4.min.css"></link>
+<script type="text/javascript" src="/datatables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+function remove(){
+	var r= confirm("Êtes vous sûr de vouloir supprimer cette selection!");
+	if(r==true){
+		return true;
+	}
+	  return false;	
+}   
+	$(document).ready(function(){
+		$('#example').DataTable();
+		 //$('#myTable').DataTable();
+		  
+	});
+</script>
+</head>
+ <body>
+	<div class="container">
+		<div class="row col-md-6 col-md-offset-2 custyle">
+			<table id="example" align="center" class="table table-striped custab">
+				<thead>
+				   <tr>
+					<th>ID</th>
+					<th>Matricule</th>
+					<th>Prenom</th>
+					<th>Nom</th>
+					<th>Date de Naissance</th>
+					<th>Adresse</th>
+					<th>Specialites</th>
+					<th>Services</th>
+					<th>Action</th>
+				  </tr>
+				</thead>
+				<tbody>
+				   <tr th:each="m :${lesmedecins} ">
+					<th th:text="${m.id}"></th>
+					<th th:text="${m.matricule}"></th>
+					<th th:text="${m.prenom}"></th>
+					<th th:text="${m.nom}"></th>
+					<th th:text="${m.datenaiss}"></th>
+					<th th:text="${m.adresse}"></th>
+					<th th:text="${m.specialite.libelle}"></th>
+					<th th:text="${m.service.libelle}"></th>
+                    <th><a class='btn btn-info btn-xs'
+						th:href="@{/medecin/edit(id=${m.id})}"><span
+							class="glyphicon glyphicon-edit"></span> Edit</a> 
+							<a onclick="javascript:return remove();"
+						th:href="@{/medecin/remove(id=${m.id})}"
+						class="btn btn-danger btn-xs del"><span
+							class="glyphicon glyphicon-remove"></span> Delete</a>
+					</th>
+				   </tr>
+                </tbody>
+			</table>
+		</div>
+		    <p>Pour ajouter un médécin, cliquez ici <a href="http://localhost:8080/medecin/add" class="glyphicon glyphicon-add">Ajouter un Médécin</a></p>
+	</div>
+</body>
+</html>

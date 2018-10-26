@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="/css/bootstrap.min.css"></link>
+<link rel="stylesheet" href="/css/bootstrap.css"></link>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<title>Formulaire d'ajout de médécin</title>
+</head>
+<body>
+	<div style=" text-align:center; width:50%;margin:auto">
+     			<h2>Ajouter Un Médecin</h2>
+		<form method="post" action="#" th:action="@{/medecin/add}" th:object="${medecin}">
+			Matricule:<br>
+			  <input type="text"  th:field="*{matricule}" required>
+			  <input type="hidden" name="idmed" th:field="*{id}">
+			  <br> <br>
+			  
+			Prénom:<br>
+			  <input type="text"  th:field="*{prenom}" required>
+			  <br> <br>
+			  
+			Nom:<br>
+			  <input type="text"  th:field="*{nom}" required>
+			  <br> <br>
+			  
+			Adresse:<br>
+			  <input type="text"  th:field="*{adresse}" required>
+			  <br> <br>
+		   
+		   Date de Naissance:<br>
+			  <input type="date"  th:field="*{datenaiss}" required>
+			  <br> <br>
+			
+		  <select th:field="*{service}" >
+  				<option value="">Services</option>
+  				<option th:each="srv:${lesservices}" th:value="${srv.id}" th:text="${srv.libelle}"></option>  
+  		  </select>
+  		  
+  		  
+  		  <select th:field="*{specialite}">
+  				<option value="">Specialites</option>  
+  				<option th:each="s:${lesspecialites}" th:value="${s.id}" th:text="${s.libelle}"></option>  
+  		  </select>
+			
+			   <input type="submit" value="Enregistrer">
+		</form>
+	</div>
+		<label th:text="${message}"/>
+</body>
+</html>
