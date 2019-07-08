@@ -1,2 +1,2 @@
 # IbroJoeDiabate
-Quelques projets perso
+Quelques projets perso en Java
